@@ -21,11 +21,11 @@ module USDAMarketExporter
                                     :county => line[:county],
                                     :state => line[:state],
                                     :zipcode => line[:zip],
-                                    :season_1_date => line[:season1date],
+                                    :season_1_date => convert_season_date(line[:season1date]),
                                     :season_1_time => line[:season1time],
-                                    :season_2_date => line[:season2date],
+                                    :season_2_date => convert_season_date(line[:season2date]),
                                     :season_2_time => line[:season2time],
-                                    :season_3_date => line[:season3date],
+                                    :season_3_date => convert_season_date(line[:season3date]),
                                     :season_3_time => line[:season3time],
                                     :latitude => line[:x],
                                     :longitude => line[:y],
@@ -62,6 +62,28 @@ module USDAMarketExporter
       line == "Y" ? true : false
     end
 
+    def convert_season_date(season_date)
+      unless season_date.nil?
+        if season_date.include?("/")
+          parse_date_range(season_date)
+        else
+          season_date
+        end
+      end
+    end
+
+    def season_date_splitter(date_range)
+      dates = date_range.gsub("/", "-").gsub(" ", "").split("to")
+      dates.map {|date| month_to_name(date)}
+    end
+
+    def month_to_name(date)
+      Date.strptime(date, '%m-%d-%Y').strftime("%B")
+    end
+
+    def parse_date_range(date_range)
+      season_date_splitter(date_range).join(" to ")
+    end
 
   end
 end
