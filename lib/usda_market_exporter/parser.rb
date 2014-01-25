@@ -6,7 +6,6 @@ module USDAMarketExporter
     def parse_file(filename)
       data = open_file(filename)
       @markets = data.collect {|line| build_markets(line)}
-      @markets.count
     end
 
     def open_file(filename)
