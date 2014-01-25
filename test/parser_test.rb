@@ -19,8 +19,12 @@ class USDAMarketExporterTest < Minitest::Test
     assert_equal false, mp.convert_boolean(n)
   end
 
-  def test_it_parses_seasons
-
+  def test_it_converts_season_dates
+    mp = USDAMarketExporter::Parser.new
+    input_gregorian_MDY = "11/09/03 to 01/12/04"
+    input_month_range = "July to October"
+    assert_equal "November to January", mp.convert_season_date(input_gregorian_MDY)
+    assert_equal "July to October", mp.convert_season_date(input_month_range)
   end
 
   def test_the_market_data_is_accessible
