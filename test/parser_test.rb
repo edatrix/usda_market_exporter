@@ -1,7 +1,4 @@
-gem 'minitest'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/usda_market_exporter'
+require_relative './test_helper'
 
 class USDAMarketExporterTest < Minitest::Test
   def test_it_exists
