@@ -30,35 +30,35 @@ module USDAMarketExporter
                                     :latitude => line[:x],
                                     :longitude => line[:y],
                                     :location_description => line[:location],
-                                    :credit => parse_boolean(line[:credit]),
-                                    :wic => parse_boolean(line[:wic]),
-                                    :wiccash => parse_boolean(line[:wiccash]),
-                                    :sfmnp => parse_boolean(line[:sfmnp]),
-                                    :snap => parse_boolean(line[:snap]),
-                                    :baked_goods => parse_boolean(line[:bakedgoods]),
-                                    :cheese => parse_boolean(line[:cheese]),
-                                    :crafts => parse_boolean(line[:crafts]),
-                                    :flowers => parse_boolean(line[:flowers]),
-                                    :eggs => parse_boolean(line[:eggs]),
-                                    :seafood => parse_boolean(line[:seafood]),
-                                    :herbs => parse_boolean(line[:herbs]),
-                                    :vegetables => parse_boolean(line[:vegetables]),
-                                    :honey => parse_boolean(line[:honey]),
-                                    :jams => parse_boolean(line[:jams]),
-                                    :maple => parse_boolean(line[:maple]),
-                                    :meat => parse_boolean(line[:meat]),
-                                    :nursery => parse_boolean(line[:nursery]),
-                                    :nuts => parse_boolean(line[:plants]),
-                                    :poultry => parse_boolean(line[:poultry]),
-                                    :prepared => parse_boolean(line[:prepared]),
-                                    :soap => parse_boolean(line[:soap]),
-                                    :trees => parse_boolean(line[:trees]),
-                                    :wine => parse_boolean(line[:wine]))
+                                    :credit => convert_boolean(line[:credit]),
+                                    :wic => convert_boolean(line[:wic]),
+                                    :wiccash => convert_boolean(line[:wiccash]),
+                                    :sfmnp => convert_boolean(line[:sfmnp]),
+                                    :snap => convert_boolean(line[:snap]),
+                                    :baked_goods => convert_boolean(line[:bakedgoods]),
+                                    :cheese => convert_boolean(line[:cheese]),
+                                    :crafts => convert_boolean(line[:crafts]),
+                                    :flowers => convert_boolean(line[:flowers]),
+                                    :eggs => convert_boolean(line[:eggs]),
+                                    :seafood => convert_boolean(line[:seafood]),
+                                    :herbs => convert_boolean(line[:herbs]),
+                                    :vegetables => convert_boolean(line[:vegetables]),
+                                    :honey => convert_boolean(line[:honey]),
+                                    :jams => convert_boolean(line[:jams]),
+                                    :maple => convert_boolean(line[:maple]),
+                                    :meat => convert_boolean(line[:meat]),
+                                    :nursery => convert_boolean(line[:nursery]),
+                                    :nuts => convert_boolean(line[:plants]),
+                                    :poultry => convert_boolean(line[:poultry]),
+                                    :prepared => convert_boolean(line[:prepared]),
+                                    :soap => convert_boolean(line[:soap]),
+                                    :trees => convert_boolean(line[:trees]),
+                                    :wine => convert_boolean(line[:wine]))
     end
 
-private
 
-    def parse_boolean(line)
+
+    def convert_boolean(line)
       line == "Y" ? true : false
     end
 

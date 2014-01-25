@@ -11,7 +11,20 @@ class USDAMarketExporterTest < Minitest::Test
     assert_equal 11, markets_parsed.count
   end
 
+  def test_it_converts_to_boolean
+    mp = USDAMarketExporter::Parser.new
+    y = "Y"
+    n = "N"
+    assert_equal true, mp.convert_boolean(y)
+    assert_equal false, mp.convert_boolean(n)
+  end
+
+  def test_it_parses_seasons
+
+  end
+
   def test_the_market_data_is_accessible
+    skip
     mp = USDAMarketExporter::Parser.new
     markets_parsed = mp.parse_file('./test/fixtures/2013_faker_markets.csv')
     market = markets_parsed.first
