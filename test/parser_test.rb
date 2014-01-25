@@ -27,6 +27,16 @@ class USDAMarketExporterTest < Minitest::Test
     assert_equal "July to October", mp.convert_season_date(input_month_range)
   end
 
+  def test_it_converts_season_times
+    mp = USDAMarketExporter::Parser.new
+    week = "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM;Thu:12:00 PM - 5:00 PM;Fri:12:00 PM - 5:00 PM;Sat:10:00 AM - 5:00 PM;sun:12:00 PM - 5:00 PM;"
+    weekend = "Sat: 8:00 AM-3:00 PM;Sun: 8:00 AM-3:00 PM;"
+    parsed_week = [{"mon"=>"12:00 PM - 5:00 PM", "tues"=>"12:00 PM - 5:00 PM", "wed"=>"12:00 PM - 5:00 PM", "thurs"=>"12:00 PM - 5:00 PM",
+      "fri"=>"12:00 PM - 5:00 PM", "sat"=>"10:00 AM - 5:00 PM", "sun"=>"12:00 PM - 5:00 PM"}]
+    assert_equal parsed_week, mp.convert_season_times(week)
+    assert_equal [{"sat"=>"8:00 AM - 3:00 PM", "sun"=>"8:00 AM - 3:00 PM"}], mp.convert_season_times(weekend)
+  end
+
   def test_the_market_data_is_accessible
     skip
     mp = USDAMarketExporter::Parser.new
