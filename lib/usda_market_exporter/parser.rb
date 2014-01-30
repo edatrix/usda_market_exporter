@@ -100,6 +100,14 @@ module USDAMarketExporter
     def day_of_week_finder(input)
       input.match(/[[:alpha:]]+[[:lower:]]+[[:lower:]]/).to_s.capitalize
     end
+
+    def start_end_time_splitter(input)
+      input.split("-")
+    end
+
+    def time_of_day_finder(input)
+      input.match(/\d+\H+\d+/)
+    end
   end
 end
 
