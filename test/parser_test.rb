@@ -27,6 +27,12 @@ class USDAMarketExporterTest < Minitest::Test
     assert_equal "July to October", mp.convert_season_date(input_month_range)
   end
 
+  def test_it_splits_each_time_to_day
+    mp = USDAMarketExporter::Parser.new
+    week =  "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM"
+    assert_equal ["Mon:12:00 PM - 5:00 PM", "Tue:12:00 PM - 5:00 PM", "Wed:12:00 PM - 5:00 PM"], mp.day_splitter(week)
+  end
+
   def test_it_finds_day_of_week_from_string
     mp = USDAMarketExporter::Parser.new
     week =  "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM"
