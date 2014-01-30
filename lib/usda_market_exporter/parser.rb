@@ -22,13 +22,15 @@ module USDAMarketExporter
                                     :state => line[:state],
                                     :zipcode => line[:zip],
                                     :season_1_date => convert_season_date(line[:season1date]),
-                                    :season_1_time => line[:season1time],
+                                    #:season_1_time => line[:season1time],
                                     :season_2_date => convert_season_date(line[:season2date]),
-                                    :season_2_time => line[:season2time],
+                                    #:season_2_time => line[:season2time],
                                     :season_3_date => convert_season_date(line[:season3date]),
-                                    :season_3_time => line[:season3time],
-                                    :latitude => line[:x],
-                                    :longitude => line[:y],
+                                    #:season_3_time => line[:season3time],
+                                    :season_4_date => convert_season_date(line[:season4date]),
+                                    #:season_4_time => line[:season4time],
+:lng => line[:x],
+                                    :lat => line[:y],
                                     :location_description => line[:location],
                                     :credit => convert_boolean(line[:credit]),
                                     :wic => convert_boolean(line[:wic]),
@@ -85,5 +87,19 @@ module USDAMarketExporter
       season_date_splitter(date_range).join(" to ")
     end
 
+    def convert_season_times(line)
+      day_splitter(line).map do |day_time|
+        day_of_week_finder(day_time)
+      end
+    end
+
+    def day_splitter(input)
+      input.split(";")
+    end
+
+    def day_of_week_finder(input)
+      input.match(/[[:alpha:]]+[[:lower:]]+[[:lower:]]/).to_s.capitalize
+    end
   end
 end
+

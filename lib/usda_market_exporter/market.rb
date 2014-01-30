@@ -1,7 +1,7 @@
 module USDAMarketExporter
   class Market
 
-    attr_accessor :id, :name, :website, :street, :city, :county, :state, :zipcode, :season_1_date, :season_1_time, :season_2_date, :season_2_time, :season_3_date, :season_3_time, :lat, :long, :location_description, :credit, :wic, :wiccash, :sfmnp, :snap, :baked_goods, :cheese, :crafts, :flowers, :eggs, :seafood, :herbs, :vegetables, :honey, :jams, :maple, :meat, :nursery, :nuts, :poultry, :prepared, :soap, :trees, :wine
+    attr_accessor :id, :name, :website, :street, :city, :county, :state, :zipcode, :season_1_date, :season_2_date, :season_3_date, :season_4_date, :lat, :long, :location_description, :credit, :wic, :wiccash, :sfmnp, :snap, :baked_goods, :cheese, :crafts, :flowers, :eggs, :seafood, :herbs, :vegetables, :honey, :jams, :maple, :meat, :nursery, :nuts, :poultry, :prepared, :soap, :trees, :wine
 
     def initialize(data)
       @id = data[:id]
@@ -13,13 +13,15 @@ module USDAMarketExporter
       @state = data[:state]
       @zipcode = data[:zip]
       @season_1_date = data[:season_1_date]
-      @season_1_time = data[:season_1_time]
+      # @season_1_time = data[:season_1_time]
       @season_2_date = data[:season_2_date]
-      @season_2_time = data[:season_2_time]
+      # @season_2_time = data[:season_2_time]
       @season_3_date = data[:season_3_date]
-      @season_3_time = data[:season_3_time]
-      @lat = data[:latitude]
-      @long = data[:longitude]
+      # @season_3_time = data[:season_3_time]
+      @season_4_date = data[:season_4_date]
+      # @season_4_time = data[:season_4_time]
+      @lat = data[:lat]
+      @lng = data[:lng]
       @location_description = data[:location_description]
       @credit = data[:credit]
       @wic = data[:wic]
