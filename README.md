@@ -13,7 +13,8 @@ The USDA Farmer's Market directory has a clunky interface at best, and the API t
 
 
 ## Usage
-I plan on building a robust API around this data for public consumption. There's probably no real reason for you to download this when in a few weeks there will be an easier interface! 
+There's probably no real reason for you to download this when you can instead use the API we built over at <http://github.com/freshfinder>
+
 
 ## Contributing
 
