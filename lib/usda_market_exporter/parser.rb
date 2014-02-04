@@ -88,8 +88,9 @@ module USDAMarketExporter
     end
 
     def convert_season_times(line)
+      parsed_hash = Hash.new
       day_splitter(line).map do |day_time|
-        day_of_week_finder(day_time)
+        parsed_hash[day_of_week_finder(day_time)] = [start_in_military, end_in_military]
       end
     end
 
@@ -98,19 +99,20 @@ module USDAMarketExporter
     end
 
     def day_of_week_finder(input)
-      input.map do |day|
-        day.split(":").first
-      end
+      input[0..2]
     end
-####### wait, can't I just split it all on ":" and then use a range to get rid of the first one (or keep the first one only?) instead of all this regex crap?
 
-    #def start_end_time_splitter(input)
-      #input.split("-")
-    #end
+   def start_end_time_splitter(input)
+      input.split("-")
+    end
 
-    #def time_of_day_finder(input)
-      #input.match(/\d+\H+\d+/)
-    #end
+    def time_of_day_finder(input)
+      input.match(/\d+\H+\d+/)
+    end
+
+    def military_time_converter(input)
+      ## figure it out
+    end
   end
 end
 
