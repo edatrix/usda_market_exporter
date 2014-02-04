@@ -90,7 +90,7 @@ module USDAMarketExporter
     def convert_season_times(line)
       parsed_hash = Hash.new
       day_splitter(line).map do |day_time|
-        parsed_hash[day_of_week_finder(day_time)] = [start_in_military, end_in_military]
+        parsed_hash[day_of_week_finder(day_time)] = time_of_day_finder(day_time)
       end
     end
 
@@ -107,7 +107,7 @@ module USDAMarketExporter
     end
 
     def time_of_day_finder(input)
-      input.match(/\d+\H+\d+/)
+      input[4..-1]
     end
 
     def military_time_converter(input)
