@@ -98,16 +98,19 @@ module USDAMarketExporter
     end
 
     def day_of_week_finder(input)
-      input.match(/[[:alpha:]]+[[:lower:]]+[[:lower:]]/).to_s.capitalize
+      input.map do |day|
+        day.split(":").first
+      end
     end
+####### wait, can't I just split it all on ":" and then use a range to get rid of the first one (or keep the first one only?) instead of all this regex crap?
 
-    def start_end_time_splitter(input)
-      input.split("-")
-    end
+    #def start_end_time_splitter(input)
+      #input.split("-")
+    #end
 
-    def time_of_day_finder(input)
-      input.match(/\d+\H+\d+/)
-    end
+    #def time_of_day_finder(input)
+      #input.match(/\d+\H+\d+/)
+    #end
   end
 end
 
