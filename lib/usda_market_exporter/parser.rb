@@ -103,8 +103,8 @@ module USDAMarketExporter
       input[0..2].capitalize
     end
 
-   def start_end_time_splitter(input)
-      input.split("-")
+    def start_end_time_splitter(input)
+      input.gsub(" ", "").split("-")
     end
 
     def time_of_day_finder(input)

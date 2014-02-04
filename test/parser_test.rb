@@ -48,14 +48,14 @@ class USDAMarketExporterTest < Minitest::Test
     assert_equal ["12:00 PM - 5:00 PM", "12:00 PM - 3:00 PM", "1:00 PM - 5:00 PM"], split_days.map {|time| mp.time_of_day_finder(time)}
   end
 
-  def test_it_splits_start_and_end_time
-    skip
+  def test_it_splits_start_and_end_time_and_makes_it_military
     mp = USDAMarketExporter::Parser.new
-    week =  "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM"
-    assert_equal ["Mon:12:00 PM ", " 5:00 PM;Tue:12:00 PM ", " 5:00 PM;Wed:12:00 PM ", " 5:00 PM"],  mp.start_end_time_splitter(week)
+    time_of_day_found =  "12:00 PM - 5:00 PM"
+    assert_equal ["12:00:00", "17:00:00"],  mp.start_end_time_splitter(time_of_day_found)
   end
 
   def test_it_converts_times_to_hash
+    skip
     mp = USDAMarketExporter::Parser.new
     week = "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM;Thu:12:00 PM - 5:00 PM;Fri:12:00 PM - 5:00 PM;Sat:10:00 AM - 5:00 PM;sun:12:00 PM - 5:00 PM;"
     weekend = "Sat: 8:00 AM-3:00 PM;Sun: 8:00 AM-3:00 PM;"
