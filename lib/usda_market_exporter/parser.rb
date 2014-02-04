@@ -90,7 +90,13 @@ module USDAMarketExporter
     def convert_season_times(line)
       parsed_hash = Hash.new
       day_splitter(line).map do |day_time|
-        parsed_hash[day_of_week_finder(day_time)] = time_of_day_finder(day_time)
+        found_day = day_of_week_finder(day_time)
+        found_times = time_of_day_finder(day_time)
+        split_times = start_end_time_splitter(found_times)
+        converted_times = split_times.map do |time|
+          military_time_converter(time)
+        end
+        parsed_hash[found_day] = converted_times
       end
       parsed_hash
     end
@@ -112,7 +118,7 @@ module USDAMarketExporter
     end
 
     def military_time_converter(input)
-      ## figure it out
+      Time.parse(input).hour.to_s + ":00:00"
     end
   end
 end
