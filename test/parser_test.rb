@@ -56,13 +56,12 @@ class USDAMarketExporterTest < Minitest::Test
   end
 
   def test_it_converts_times_to_hash
-    skip
     mp = USDAMarketExporter::Parser.new
     week = "Mon:12:00 PM - 5:00 PM;Tue:12:00 PM - 5:00 PM;Wed:12:00 PM - 5:00 PM;Thu:12:00 PM - 5:00 PM;Fri:12:00 PM - 5:00 PM;Sat:10:00 AM - 5:00 PM;sun:12:00 PM - 5:00 PM;"
     weekend = "Sat: 8:00 AM-3:00 PM;Sun: 8:00 AM-3:00 PM;"
-    parsed_week = [{"Monday"=>["12:00:00", "17:00:00"], "Tuesday"=> ["12:00:00", "17:00:00"], "Wednesday"=> ["12:00:00", "17:00:00"], "Thursday"=> ["12:00:00" ,"17:00:00"], "Friday"=> ["12:00:00", "17:00:00"], "Saturday"=> ["10:00:00" , "17:00:00"], "Sunday"=> ["12:00:00", "17:00:00"]}]
+    parsed_week = [{"Mon"=>["12:00:00", "17:00:00"], "Tue"=> ["12:00:00", "17:00:00"], "Wed"=> ["12:00:00", "17:00:00"], "Thu"=> ["12:00:00" ,"17:00:00"], "Fri"=> ["12:00:00", "17:00:00"], "Sat"=> ["10:00:00" , "17:00:00"], "Sun"=> ["12:00:00", "17:00:00"]}]
     assert_equal parsed_week, mp.convert_season_times(week)
-    assert_equal [{"Saturday"=> ["8:00:00", "15:00:00"], "Sunday"=> ["8:00:00", "15:00:00"]}], mp.convert_season_times(weekend)
+    assert_equal [{"Sat"=> ["8:00:00", "15:00:00"], "Sun"=> ["8:00:00", "15:00:00"]}], mp.convert_season_times(weekend)
   end
 
   def test_the_market_data_is_accessible

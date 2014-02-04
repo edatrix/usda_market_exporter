@@ -92,6 +92,7 @@ module USDAMarketExporter
       day_splitter(line).map do |day_time|
         parsed_hash[day_of_week_finder(day_time)] = time_of_day_finder(day_time)
       end
+      parsed_hash
     end
 
     def day_splitter(input)
@@ -99,7 +100,7 @@ module USDAMarketExporter
     end
 
     def day_of_week_finder(input)
-      input[0..2]
+      input[0..2].capitalize
     end
 
    def start_end_time_splitter(input)
