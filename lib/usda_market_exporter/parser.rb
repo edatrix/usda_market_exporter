@@ -22,13 +22,13 @@ module USDAMarketExporter
                                     :state => line[:state],
                                     :zipcode => line[:zip],
                                     :season_1_date => convert_season_date(line[:season1date]),
-                                    #:season_1_time => line[:season1time],
+                                    :season_1_time => convert_season_times(line[:season1time]),
                                     :season_2_date => convert_season_date(line[:season2date]),
-                                    #:season_2_time => line[:season2time],
+                                    :season_2_time => convert_season_times(line[:season2time]),
                                     :season_3_date => convert_season_date(line[:season3date]),
-                                    #:season_3_time => line[:season3time],
+                                    :season_3_time => convert_season_times(line[:season3time]),
                                     :season_4_date => convert_season_date(line[:season4date]),
-                                    #:season_4_time => line[:season4time],
+                                    :season_4_time => convert_season_times(line[:season4time]),
 :lng => line[:x],
                                     :lat => line[:y],
                                     :location_description => line[:location],
@@ -88,17 +88,19 @@ module USDAMarketExporter
     end
 
     def convert_season_times(line)
-      parsed_hash = Hash.new
-      day_splitter(line).map do |day_time|
-        found_day = day_of_week_finder(day_time)
-        found_times = time_of_day_finder(day_time)
-        split_times = start_end_time_splitter(found_times)
-        converted_times = split_times.map do |time|
-          military_time_converter(time)
+      unless line.nil?
+        parsed_hash = Hash.new
+        day_splitter(line).map do |day_time|
+          found_day = day_of_week_finder(day_time)
+          found_times = time_of_day_finder(day_time)
+          split_times = start_end_time_splitter(found_times)
+          converted_times = split_times.map do |time|
+            military_time_converter(time)
+          end
+          parsed_hash[found_day] = converted_times
         end
-        parsed_hash[found_day] = converted_times
+        parsed_hash
       end
-      parsed_hash
     end
 
     def day_splitter(input)

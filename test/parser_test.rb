@@ -65,18 +65,22 @@ class USDAMarketExporterTest < Minitest::Test
   end
 
   def test_the_market_data_is_accessible
-    skip
     mp = USDAMarketExporter::Parser.new
     markets_parsed = mp.parse_file('./test/fixtures/2013_faker_markets.csv')
     market = markets_parsed.first
     assert_equal "1005969", market.id
     assert_equal '"Y Not Wednesday Farmers Market at Town Center"', market.name
     assert_equal "http://www.sandlercenter.org/index/ynotwednesdays", market.website
-    assert_equal "201 Market Street", market.street
+    assert_equal "201 Market Street,", market.street
     assert_equal "Virginia Beach", market.city
     assert_equal "Virginia Beach", market.county
     assert_equal "Virginia", market.state
     assert_equal "23462", market.zipcode
+    assert_equal "June to August", market.season_1_date
+    assert_equal({"Wed"=>["17:00:00", "20:00:00"]}, market.season_1_time)
+    assert_equal nil, market.season_2_date
+    assert_equal nil, market.season_2_time
+
   end
 end
 
