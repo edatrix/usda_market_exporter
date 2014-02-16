@@ -13,7 +13,7 @@ The USDA Farmer's Market directory has a clunky interface at best, and the API t
 
 
 ## Usage
-There's probably no real reason for you to download this when you can instead use the API we built over at <http://github.com/freshfinder>
+There's probably no real reason for you to download this when you can instead use the API we built over at <http://github.com/freshfinder>. The parsed data can be found at <http://freshfinder.us/api/v1/markets> for all market lists, or hop over to the [FreshFinder API Readme](https://github.com/FreshFinder/to-the-market-api) for all of the endpoints of the parsed data.
 
 
 ## Contributing
